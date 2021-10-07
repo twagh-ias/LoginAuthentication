@@ -1,0 +1,13 @@
+--DROP TABLE IF EXISTS 'login';
+--
+--create table 'login' (
+--				'e_id' int NOT NULL,
+--                'user_name' varchar(255) NOT NULL PRIMARY KEY,
+--                'user_pass' varchar(255) NOT NULL,
+--                'email' varchar(255) not null,
+--                'enable' tinyint(1) NOT NULL default '1',
+--				'created_by' varchar(255),
+--                'created_on' varchar(255),
+--                'last_updated_by' varchar(255),
+--                'last_updated_on' varchar(255)
+--);

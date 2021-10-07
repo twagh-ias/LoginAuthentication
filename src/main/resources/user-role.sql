@@ -1,0 +1,7 @@
+--DROP TABLE IF EXISTS `user_role`;
+--
+--CREATE TABLE `user_role` (
+--  `user_name` varchar(255) NOT NULL,
+--  `user_role` varchar(255) NOT NULL,
+--  FOREIGN KEY (`user_name`) REFERENCES `login` (`user_name`)
+--);
