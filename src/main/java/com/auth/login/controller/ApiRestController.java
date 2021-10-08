@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiRestController {
 
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('employee')")
     @GetMapping("/greet/user")
     public ResponseEntity<String> greetingUser() {
-        return new ResponseEntity<String>("Welcome, you have USER role", HttpStatus.OK);
+        return new ResponseEntity<String>("Welcome, you have employee role", HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
