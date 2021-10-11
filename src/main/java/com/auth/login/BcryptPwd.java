@@ -7,5 +7,8 @@ public class BcryptPwd {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode("admin");
         System.out.println(encodedPassword);
+
+        String encodedPassword1 = passwordEncoder.encode("employee");
+        System.out.println(encodedPassword1);
     }
 }
