@@ -1,8 +1,6 @@
-package com.auth.login.dao;
-
-
+package com.auth.login.service;
 import com.auth.login.model.UserSkill;
 
-public interface UserSkillRepo {
+public interface UserSkillService {
     UserSkill getById(int e_id);
 }

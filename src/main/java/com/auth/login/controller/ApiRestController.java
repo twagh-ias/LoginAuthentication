@@ -3,9 +3,12 @@ package com.auth.login.controller;
 import java.util.*;
 
 import com.auth.login.dao.EmpRepo;
+import com.auth.login.dao.UserSkillRepo;
 import com.auth.login.exception.ResourceNotFound;
 import com.auth.login.model.Emp;
+import com.auth.login.model.UserSkill;
 import com.auth.login.service.EmployeeService;
+import com.auth.login.service.UserSkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,12 +30,23 @@ public class ApiRestController {
     EmpRepo empRepo;
 
     @Autowired
+    UserSkillService userSkillService;
+
+    @Autowired
+    UserSkillRepo userSkillRepo;
+
+    @Autowired
     JdbcTemplate jdbcTemplate;
 
     //@PreAuthorize("hasRole('employee')")
     @GetMapping("/home/{id}")
     public Emp getEmp(@PathVariable int id){
         return employeeService.getById(id);
+    }
+
+    @GetMapping("/home2/{id}")
+    public UserSkill getUserSkill(@PathVariable int id){
+        return userSkillService.getById(id);
     }
 
     //get employee by id
