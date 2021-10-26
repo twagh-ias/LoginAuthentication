@@ -26,4 +26,17 @@ public class UserSkillServiceImpl implements UserSkillService{
     public List<UserSkill> findAllSkills(){
         return userSkillRepo.findAllSkills();
     }
+
+    @Override
+    public boolean deleteUserSkill(long id) {
+        return userSkillRepo.deleteUserSkill(id);
+    }
+
+    public void insertUserSkill(UserSkill userSkill){
+        userSkillRepo.insertUserSkill(userSkill);
+    }
+
+    public int update(UserSkill userSkill,long e_id){
+        return userSkillRepo.update(userSkill,e_id);
+    }
 }

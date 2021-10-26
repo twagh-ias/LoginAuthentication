@@ -71,8 +71,6 @@ public class EmpRepoImpl implements EmpRepo {
                 "slack_time = ?,certifications = ? where e_id = ?";
         Object[] params = {emp.getEmployee_name(),emp.getEmail(),emp.getTotal_exp(),emp.getAd_tech_exp(),emp.getSlack_time(),emp.getCertifications(),e_id};
         int[] types = {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,Types.LONGVARCHAR};
-//        int rows = template.update(UpdateDemo.QUERY, params, types);
-//        System.out.println(rows + " row(s) updated.");
         return jdbcTemplate.update(update_query,params,types);
     }
 

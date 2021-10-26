@@ -7,4 +7,10 @@ public interface UserSkillService {
     UserSkill getById(int e_id);
 
     List<UserSkill> findAllSkills();
+
+    boolean deleteUserSkill(long id);
+
+    void insertUserSkill(UserSkill userSkill);
+
+    int update(UserSkill userSkill,long e_id);
 }

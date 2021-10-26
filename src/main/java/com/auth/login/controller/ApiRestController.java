@@ -69,6 +69,21 @@ public class ApiRestController {
         employeeService.update(emp,id);
     }
 
+    @PostMapping("/addUserSkills")
+    public void addUserSkills(UserSkill userSkill){
+        userSkillService.insertUserSkill(userSkill);
+    }
+
+    @PutMapping("updateUserSkills/{id}")
+    public void updateUserSkills(UserSkill userSkill, @PathVariable long id){
+        userSkillService.update(userSkill,id);
+    }
+
+    @DeleteMapping("/deleteUserSkills/{id}")
+    public void deleteUserSkill(@PathVariable int id){
+        userSkillService.deleteUserSkill(id);
+    }
+
 //    @GetMapping(value = "/home3/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
 //    public ResponseEntity<JSONObject> getAllDetails(@PathVariable int id){
 //        Emp e=employeeService.getById(id);
