@@ -5,6 +5,8 @@ import com.auth.login.model.Emp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
@@ -20,4 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         return empRepo.getById(e_id);
     }
 
+    public List<Emp> findAllEmp(){
+        return empRepo.findAllEmp();
+    }
 }

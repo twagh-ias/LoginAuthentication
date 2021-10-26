@@ -7,6 +7,7 @@ public class UserSkill {
     private String a_skills;
     private String a_proficiency_level;
 
+
     public String getP_skills() {
         return p_skills;
     }

@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.auth.login.dao.EmpRepo;
 import com.auth.login.dao.UserSkillRepo;
-import com.auth.login.exception.ResourceNotFound;
 import com.auth.login.model.Emp;
 import com.auth.login.model.UserSkill;
 import com.auth.login.service.EmployeeService;
@@ -14,10 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/toolkit/")
@@ -38,7 +34,16 @@ public class ApiRestController {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    //@PreAuthorize("hasRole('employee')")
+    @GetMapping("/home")
+    public List<Emp> getAll(){
+        return employeeService.findAllEmp();
+    }
+
+    @GetMapping("/home2")
+    public List<UserSkill> getAllSkills(){
+        return userSkillService.findAllSkills();
+    }
+
     @GetMapping("/home/{id}")
     public Emp getEmp(@PathVariable int id){
         return employeeService.getById(id);
@@ -48,6 +53,26 @@ public class ApiRestController {
     public UserSkill getUserSkill(@PathVariable int id){
         return userSkillService.getById(id);
     }
+
+//    @GetMapping(value = "/home3/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<JSONObject> getAllDetails(@PathVariable int id){
+//        Emp e=employeeService.getById(id);
+//        UserSkill u=userSkillService.getById(id);
+//        JSONObject jsonobj=new JSONObject();
+//        jsonobj.put("employee",e);
+//        jsonobj.put("skills",u);
+//        return ResponseEntity.ok(jsonobj);
+//    }
+
+//    @GetMapping(value = "/home3/{id}")
+//    public JSONObject getAllDetails(@PathVariable int id){
+//        Emp e=employeeService.getById(id);
+//        UserSkill u=userSkillService.getById(id);
+//        JSONObject jsonobj=new JSONObject();
+//        jsonobj.put("employee",e);
+//        jsonobj.put("skills",u);
+//        return jsonobj;
+//    }
 
     //get employee by id
 //    @GetMapping("/employees/{id}")

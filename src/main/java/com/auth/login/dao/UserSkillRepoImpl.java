@@ -2,9 +2,12 @@ package com.auth.login.dao;
 
 import com.auth.login.model.Emp;
 import com.auth.login.model.UserSkill;
+import com.auth.login.rowmapper.UserSkillMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class UserSkillRepoImpl implements UserSkillRepo {
@@ -14,6 +17,9 @@ public class UserSkillRepoImpl implements UserSkillRepo {
 
     private static final String get_user_skill_query="SELECT p_skills, p_proficiency_level, a_skills, a_proficiency_level" +
             " from user_skills where e_id=?";
+
+    //select e.e_id, e.employee_name, s.p_skills, s.a_skills, s.aspired_skills from toolkit.employee e join toolkit.user_skills s on e.e_id = s.e_id;
+    private static final String get_all_skills="SELECT * FROM user_skills";
 
     @Override
     public UserSkill getById(int e_id) {
@@ -28,5 +34,11 @@ public class UserSkillRepoImpl implements UserSkillRepo {
 
                     return u;
                 });
+    }
+
+    @Override
+    public List<UserSkill> findAllSkills(){
+        List<UserSkill> skills_all=jdbcTemplate.query(get_all_skills,new UserSkillMapper());;
+        return skills_all;
     }
 }

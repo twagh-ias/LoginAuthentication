@@ -1,13 +1,14 @@
 package com.auth.login.dao;
 
 import com.auth.login.model.Emp;
+import com.auth.login.rowmapper.EmpMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Repository
 public class EmpRepoImpl implements EmpRepo {
@@ -17,6 +18,11 @@ public class EmpRepoImpl implements EmpRepo {
 
     private static final String get_emp_query="SELECT employee_name,email,department,org_level,team,total_exp," +
             "ad_tech_exp,slack_time,certifications from employee where e_id=?";
+
+    private static final String get_emp_all="select * from employee";
+
+//    private static final String get_emp_query1="select e.email, e.employee_name, s.p_skills, s.a_skills, s.aspired_skills" +
+//            " from toolkit.employee e join toolkit.user_skills s on e.e_id = s.e_id";
 
     @Override
     public Emp getById(int e_id) {
@@ -33,7 +39,15 @@ public class EmpRepoImpl implements EmpRepo {
                     e.setAd_tech_exp(rs.getString("ad_tech_exp"));
                     e.setSlack_time(rs.getString("slack_time"));
                     e.setCertifications(rs.getString("certifications"));
+
                     return e;
                 });
     }
+
+    @Override
+    public List<Emp> findAllEmp(){
+        List<Emp> empall=jdbcTemplate.query(get_emp_all,new EmpMapper());;
+        return empall;
+    }
+
 }
