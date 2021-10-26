@@ -22,7 +22,23 @@ public class EmployeeServiceImpl implements EmployeeService{
         return empRepo.getById(e_id);
     }
 
+    @Override
     public List<Emp> findAllEmp(){
         return empRepo.findAllEmp();
+    }
+
+    @Override
+    public void save(Emp emp) {
+        empRepo.save(emp);
+    }
+
+    @Override
+    public boolean delete(long id){
+        return empRepo.delete(id);
+    }
+
+    @Override
+    public int update(Emp emp,long e_id){
+        return empRepo.update(emp, e_id);
     }
 }

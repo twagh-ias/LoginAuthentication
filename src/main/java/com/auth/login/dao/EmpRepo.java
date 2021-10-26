@@ -7,5 +7,11 @@ import java.util.List;
 public interface EmpRepo {
     Emp getById(int e_id);
 
-    public List<Emp> findAllEmp();
+    List<Emp> findAllEmp();
+
+    void save(Emp emp);
+
+    boolean delete(long id);
+
+    int update(Emp emp, long e_id);
 }

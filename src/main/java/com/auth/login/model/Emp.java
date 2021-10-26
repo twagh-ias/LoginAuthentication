@@ -1,7 +1,14 @@
 package com.auth.login.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+
 public class Emp {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private  String e_id;
 
     public String getE_id() {
@@ -12,7 +19,7 @@ public class Emp {
         this.e_id = e_id;
     }
 
-
+    @NotBlank(message = "Name cannot be blank!")
     private String employee_name;
     private String department;
     private String org_level;
@@ -22,6 +29,8 @@ public class Emp {
     private String ad_tech_exp;
     private String slack_time;
     private String team;
+
+    @NotBlank(message = "Email cannot be blank!")
     private String email;
 
 

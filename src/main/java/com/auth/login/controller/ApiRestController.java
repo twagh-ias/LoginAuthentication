@@ -54,6 +54,21 @@ public class ApiRestController {
         return userSkillService.getById(id);
     }
 
+    @PostMapping("/addEmp")
+    public void addEmployee(Emp emp){
+        employeeService.save(emp);
+    }
+
+    @DeleteMapping("/deleteEmp/{id}")
+    public void deleteEmp(@PathVariable int id){
+        employeeService.delete(id);
+    }
+
+    @PutMapping("/updateEmp/{id}")
+    public void updateEmp(Emp emp, @PathVariable long id){
+        employeeService.update(emp,id);
+    }
+
 //    @GetMapping(value = "/home3/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
 //    public ResponseEntity<JSONObject> getAllDetails(@PathVariable int id){
 //        Emp e=employeeService.getById(id);
@@ -72,13 +87,6 @@ public class ApiRestController {
 //        jsonobj.put("employee",e);
 //        jsonobj.put("skills",u);
 //        return jsonobj;
-//    }
-
-    //get employee by id
-//    @GetMapping("/employees/{id}")
-//    public ResponseEntity<Emp> getEmployeeById(@PathVariable int id){
-//        Emp employee = empRepo.getById(id);
-//        return ResponseEntity.ok(employee);
 //    }
 
     @PreAuthorize("hasRole('employee')")
