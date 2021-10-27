@@ -3,6 +3,7 @@ package com.auth.login.model;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 public class Emp {
@@ -30,7 +31,7 @@ public class Emp {
     private String slack_time;
     private String team;
 
-    @NotBlank(message = "Email cannot be blank!")
+    @Email(message = "Email must be valid!")
     private String email;
 
 
