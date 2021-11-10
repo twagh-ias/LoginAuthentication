@@ -1,7 +1,5 @@
 package com.auth.login.controller;
-
 import java.util.*;
-
 import com.auth.login.dao.EmpRepo;
 import com.auth.login.dao.UserSkillRepo;
 import com.auth.login.model.Emp;
@@ -17,10 +15,14 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/toolkit/")
+
 public class ApiRestController {
 
     @Autowired
     EmployeeService employeeService;
+
+    @Autowired
+    Emp emp;
 
     @Autowired
     EmpRepo empRepo;
@@ -139,5 +141,4 @@ public class ApiRestController {
     public ResponseEntity<String> greetingAnonymous() {
         return new ResponseEntity<String>("Welcome, you have USER and ADMIN role", HttpStatus.OK);
     }
-
 }
