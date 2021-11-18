@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/toolkit/")
+@CrossOrigin("http://localhost:3000/")
 
 public class ApiRestController {
 

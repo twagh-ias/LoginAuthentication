@@ -2,13 +2,40 @@ package com.auth.login.model;
 
 public class UserSkill {
     private String e_id;
+    private String employee_name;
     private String p_skills;
     private String p_proficiency_level;
+    private String p_rating_delta;
+    private String p_manager_rating;
     private String a_skills;
     private String a_proficiency_level;
     private String aspired_skills;
     private String a_self_rating;
     private String p_self_rating;
+
+    public String getEmployee_name() {
+        return employee_name;
+    }
+
+    public void setEmployee_name(String employee_name) {
+        this.employee_name = employee_name;
+    }
+
+    public String getP_rating_delta() {
+        return p_rating_delta;
+    }
+
+    public void setP_rating_delta(String p_rating_delta) {
+        this.p_rating_delta = p_rating_delta;
+    }
+
+    public String getP_manager_rating() {
+        return p_manager_rating;
+    }
+
+    public void setP_manager_rating(String p_manager_rating) {
+        this.p_manager_rating = p_manager_rating;
+    }
 
     public String getAspired_skills() {
         return aspired_skills;
