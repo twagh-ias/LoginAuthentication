@@ -26,7 +26,14 @@ public class UserDao {
     String sql1="select user_name, user_pass from login where user_name = ?";
 
     public User getUser(String username) {
-        return jdbcTemplate.queryForObject(sql1, new Object[] { username }, new UserRowMapper());
+        User user=jdbcTemplate.queryForObject(sql1, new Object[] { username }, new UserRowMapper());
+//        return jdbcTemplate.queryForObject(sql1, new Object[] { username }, new UserRowMapper());
+        if(user==null){
+            return null;
+        }
+        else {
+            return user;
+        }
     }
 
     public List<Role> getRoles(String username) {

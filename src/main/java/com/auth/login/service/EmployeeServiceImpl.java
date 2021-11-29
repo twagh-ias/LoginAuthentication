@@ -33,8 +33,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public boolean delete(long id){
-        return empRepo.delete(id);
+    public void delete(long id){
+        empRepo.delete(id);
     }
 
     @Override

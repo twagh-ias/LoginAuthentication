@@ -12,6 +12,15 @@ public class UserSkill {
     private String aspired_skills;
     private String a_self_rating;
     private String p_self_rating;
+    private String comments;
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comment) {
+        this.comments = comments;
+    }
 
     public String getEmployee_name() {
         return employee_name;

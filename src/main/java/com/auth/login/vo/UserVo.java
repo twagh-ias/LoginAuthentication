@@ -7,6 +7,8 @@ public class UserVo {
     private String userpwd;
     private Set<String> roles;
 
+//    email or id
+
     public String getUsername() {
         return username;
     }

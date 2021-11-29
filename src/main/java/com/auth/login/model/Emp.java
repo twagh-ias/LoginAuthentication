@@ -30,10 +30,27 @@ public class Emp {
     private String ad_tech_exp;
     private String slack_time;
     private String team;
+    private String designation;
+    private String role;
 
     @Email(message = "Email must be valid!")
     private String email;
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
 
     public String getEmployee_name() {
         return employee_name;

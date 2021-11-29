@@ -23,9 +23,6 @@ public class ApiRestController {
     EmployeeService employeeService;
 
     @Autowired
-    Emp emp;
-
-    @Autowired
     EmpRepo empRepo;
 
     @Autowired

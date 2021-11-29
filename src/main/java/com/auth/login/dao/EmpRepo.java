@@ -11,7 +11,7 @@ public interface EmpRepo {
 
     void save(Emp emp);
 
-    boolean delete(long id);
+    void delete(long id);
 
     int update(Emp emp, long e_id);
 }
