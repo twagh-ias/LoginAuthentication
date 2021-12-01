@@ -18,7 +18,7 @@ public class UserSkill {
         return comments;
     }
 
-    public void setComments(String comment) {
+    public void setComments(String comments) {
         this.comments = comments;
     }
 

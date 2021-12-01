@@ -6,6 +6,15 @@ public class UserRole {
     private String username;
     private String userpwd;
     private Set<String> roles;
+    private String e_id;
+
+    public String getE_id() {
+        return e_id;
+    }
+
+    public void setE_id(String e_id) {
+        this.e_id = e_id;
+    }
 
     public String getUsername() {
         return username;

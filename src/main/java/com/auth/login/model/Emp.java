@@ -32,6 +32,15 @@ public class Emp {
     private String team;
     private String designation;
     private String role;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Email(message = "Email must be valid!")
     private String email;
