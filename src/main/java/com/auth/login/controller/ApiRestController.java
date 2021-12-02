@@ -1,10 +1,13 @@
 package com.auth.login.controller;
 import java.util.*;
 import com.auth.login.dao.EmpRepo;
+import com.auth.login.dao.RoadmapSkillRepo;
 import com.auth.login.dao.UserSkillRepo;
 import com.auth.login.model.Emp;
+import com.auth.login.model.Roadmap_skills;
 import com.auth.login.model.UserSkill;
 import com.auth.login.service.EmployeeService;
+import com.auth.login.service.RoadmapSkillService;
 import com.auth.login.service.UserSkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,6 +36,12 @@ public class ApiRestController {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    RoadmapSkillService roadmapSkillService;
+
+    @Autowired
+    RoadmapSkillRepo roadmapSkillRepo;
 
     @GetMapping("/home")
     public List<Emp> getAll(){
@@ -74,7 +83,7 @@ public class ApiRestController {
         userSkillService.insertUserSkill(userSkill);
     }
 
-    @PutMapping("updateUserSkills/{id}")
+    @PutMapping("/updateUserSkills/{id}")
     public void updateUserSkills(UserSkill userSkill, @PathVariable long id){
         userSkillService.update(userSkill,id);
     }
@@ -82,6 +91,16 @@ public class ApiRestController {
     @DeleteMapping("/deleteUserSkills/{id}")
     public void deleteUserSkill(@PathVariable int id){
         userSkillService.deleteUserSkill(id);
+    }
+
+    @GetMapping("/roadmapSkills")
+    public List<Roadmap_skills> getRoadmapAll(){
+        return roadmapSkillService.findAllDetails();
+    }
+
+    @PostMapping("/addRoadmapSkill")
+    public void insertRoadmapSkill(Roadmap_skills roadmap_skills){
+        roadmapSkillService.save(roadmap_skills);
     }
 
 //    @GetMapping(value = "/home3/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
@@ -94,15 +113,6 @@ public class ApiRestController {
 //        return ResponseEntity.ok(jsonobj);
 //    }
 
-//    @GetMapping(value = "/home3/{id}")
-//    public JSONObject getAllDetails(@PathVariable int id){
-//        Emp e=employeeService.getById(id);
-//        UserSkill u=userSkillService.getById(id);
-//        JSONObject jsonobj=new JSONObject();
-//        jsonobj.put("employee",e);
-//        jsonobj.put("skills",u);
-//        return jsonobj;
-//    }
 
     @PreAuthorize("hasRole('employee')")
     @GetMapping("/employee")

@@ -51,7 +51,7 @@ public class EmpRepoImpl implements EmpRepo {
 
     @Override
     public List<Emp> findAllEmp(){
-        List<Emp> empall=jdbcTemplate.query(get_emp_all,new EmpMapper());;
+        List<Emp> empall=jdbcTemplate.query(get_emp_all,new EmpMapper());
         return empall;
     }
 
@@ -59,7 +59,10 @@ public class EmpRepoImpl implements EmpRepo {
     public void save(Emp emp) {
         int[] types = {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR};
         Object[] args={emp.getEmployee_name(),emp.getTeam(),emp.getDesignation(),emp.getRole(),emp.getEmail(),emp.getOrg_level(),emp.getProjects(),emp.getDepartment(),emp.getTotal_exp(),emp.getAd_tech_exp(),emp.getSlack_time(),emp.getCertifications(),emp.getPassword()};
+        String insert_query_skills="insert into user_skills(employee_name) values("+"'"+emp.getEmployee_name()+"'"+")";
+
         jdbcTemplate.update(insert_query,args,types);
+        jdbcTemplate.update(insert_query_skills);
     }
 
     @Override
