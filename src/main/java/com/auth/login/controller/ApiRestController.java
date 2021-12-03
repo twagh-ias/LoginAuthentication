@@ -98,6 +98,11 @@ public class ApiRestController {
         return roadmapSkillService.findAllDetails();
     }
 
+    @PostMapping("/validateSkillRoadmap")
+    public HashMap<Integer,String> validate(String required_skill,int min_req_rating,int complexity){
+        return employeeService.validate(required_skill,min_req_rating,complexity);
+    }
+
     @PostMapping("/addRoadmapSkill")
     public void insertRoadmapSkill(Roadmap_skills roadmap_skills){
         roadmapSkillService.save(roadmap_skills);
