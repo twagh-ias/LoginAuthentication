@@ -27,6 +27,10 @@ public class UserSkillServiceImpl implements UserSkillService{
         return userSkillRepo.findAllSkills();
     }
 
+    public List<UserSkill> findSkillDetails(String username){
+        return userSkillRepo.findSkillDetails(username);
+    }
+
     @Override
     public boolean deleteUserSkill(long id) {
         return userSkillRepo.deleteUserSkill(id);

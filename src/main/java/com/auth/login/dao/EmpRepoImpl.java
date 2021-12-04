@@ -2,6 +2,7 @@ package com.auth.login.dao;
 
 import com.auth.login.model.Emp;
 import com.auth.login.rowmapper.EmpMapper;
+import com.auth.login.vo.UserVo;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,6 +31,7 @@ public class EmpRepoImpl implements EmpRepo {
 
     private static final String delete_skill_query="delete from user_skills where e_id=?";
     private static final String delete_emp_query = "delete from employee where e_id = ?";
+    private static final String get_emp_details="select * from employee where email=?";
 
     @Override
     public Emp getById(int e_id) {
@@ -56,6 +58,19 @@ public class EmpRepoImpl implements EmpRepo {
     public List<Emp> findAllEmp(){
         List<Emp> empall=jdbcTemplate.query(get_emp_all,new EmpMapper());
         return empall;
+    }
+
+    @Override
+    public List<Emp> findEmpDetails(String username) {
+        List<Emp> empdetails=jdbcTemplate.query(get_emp_details,new EmpMapper(),username);
+        return empdetails;
+    }
+
+    @Override
+    public List<Emp> findAllTeams(String username) {
+        String get_teams="select * from employee where team IN(select distinct team from employee where email=?)";
+        List<Emp> empTeams=jdbcTemplate.query(get_teams,new EmpMapper(),username);
+        return empTeams;
     }
 
     @Override

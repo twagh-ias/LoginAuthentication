@@ -10,6 +10,8 @@ public interface UserSkillRepo {
 
     List<UserSkill> findAllSkills();
 
+    List<UserSkill> findSkillDetails(String username);
+
     boolean deleteUserSkill(long id);
 
     void insertUserSkill(UserSkill userSkill);

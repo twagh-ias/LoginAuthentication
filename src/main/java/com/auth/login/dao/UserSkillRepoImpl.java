@@ -23,6 +23,8 @@ public class UserSkillRepoImpl implements UserSkillRepo {
 
     private static final String insert_new_userSkill="INSERT INTO user_skills(p_skills,a_skills,aspired_skills,p_self_rating,a_self_rating,comments) values(?,?,?,?,?,?)";
 
+    private static final String get_skill_details="select * from user_skills where e_id IN(select e_id from employee where email=?)";
+
     @Override
     public UserSkill getById(int e_id) {
         return jdbcTemplate.queryForObject(get_user_skill_query,
@@ -33,6 +35,12 @@ public class UserSkillRepoImpl implements UserSkillRepo {
     public List<UserSkill> findAllSkills(){
         List<UserSkill> skills_all=jdbcTemplate.query(get_all_skills,new UserSkillMapper());;
         return skills_all;
+    }
+
+    @Override
+    public List<UserSkill> findSkillDetails(String username) {
+        List<UserSkill> skillDetail=jdbcTemplate.query(get_skill_details,new UserSkillMapper(),username);
+        return skillDetail;
     }
 
     @Override

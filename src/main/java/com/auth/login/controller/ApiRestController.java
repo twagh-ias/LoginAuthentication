@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -45,6 +47,10 @@ public class ApiRestController {
 
     @GetMapping("/home")
     public List<Emp> getAll(){
+//        String user=request.getUserPrincipal().getName();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        System.out.println(currentPrincipalName);
         return employeeService.findAllEmp();
     }
 
@@ -61,6 +67,21 @@ public class ApiRestController {
     @GetMapping("/home2/{id}")
     public UserSkill getUserSkill(@PathVariable int id){
         return userSkillService.getById(id);
+    }
+
+    @GetMapping("/getTeams")
+    public List<Emp> getTeams(String username){
+        return employeeService.findAllTeams(username);
+    }
+
+    @GetMapping("/getEmpDetails")
+    public List<Emp> getEmpDetails(String username){
+        return employeeService.findEmpDetails(username);
+    }
+
+    @GetMapping("/getSkillDetails")
+    public List<UserSkill> getSkillDetails(String username){
+        return userSkillService.findSkillDetails(username);
     }
 
     @PostMapping("/addEmp")
