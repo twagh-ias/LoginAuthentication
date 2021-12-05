@@ -69,18 +69,23 @@ public class ApiRestController {
         return userSkillService.getById(id);
     }
 
-    @GetMapping("/getTeams")
-    public List<Emp> getTeams(String username){
+    @GetMapping("/getTeams/{username}")
+    public List<Emp> getTeams(@PathVariable String username){
         return employeeService.findAllTeams(username);
     }
 
-    @GetMapping("/getEmpDetails")
-    public List<Emp> getEmpDetails(String username){
+    @GetMapping("/getTeamSkill/{username}")
+    public List<UserSkill> findAllTeamSkills(String username){
+        return userSkillRepo.findAllTeamSkills(username);
+    }
+
+    @GetMapping("/getEmpDetails/{username}")
+    public List<Emp> getEmpDetails(@PathVariable String username){
         return employeeService.findEmpDetails(username);
     }
 
-    @GetMapping("/getSkillDetails")
-    public List<UserSkill> getSkillDetails(String username){
+    @GetMapping("/getSkillDetails/{username}")
+    public List<UserSkill> getSkillDetails(@PathVariable String username){
         return userSkillService.findSkillDetails(username);
     }
 

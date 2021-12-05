@@ -10,6 +10,8 @@ public interface UserSkillService {
 
     List<UserSkill> findSkillDetails(String username);
 
+    List<UserSkill> findAllTeamSkills(String username);
+
     boolean deleteUserSkill(long id);
 
     void insertUserSkill(UserSkill userSkill);

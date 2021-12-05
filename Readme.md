@@ -44,3 +44,16 @@ http://localhost:8080/toolkit/updateUserSkills/{id}
 #delete employee's skills
 http://localhost:8080/toolkit/deleteUserSkills/{id}
 
+#get teams view
+http://localhost:8080/toolkit/getTeams/{username}
+
+#get teams skills
+http://localhost:8080/toolkit/getTeamSkill/{username}
+
+#get emp details of logged in user
+http://localhost:8080/toolkit/getEmpDetails/{username}
+
+#get skill details of logged in user
+http://localhost:8080/toolkit/getSkillDetails/{username}
+
+

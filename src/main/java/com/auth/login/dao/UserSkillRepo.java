@@ -1,6 +1,5 @@
 package com.auth.login.dao;
 
-
 import com.auth.login.model.UserSkill;
 
 import java.util.List;
@@ -11,6 +10,8 @@ public interface UserSkillRepo {
     List<UserSkill> findAllSkills();
 
     List<UserSkill> findSkillDetails(String username);
+
+    List<UserSkill> findAllTeamSkills(String username);
 
     boolean deleteUserSkill(long id);
 
