@@ -3,7 +3,6 @@ import java.util.*;
 import com.auth.login.dao.EmpRepo;
 import com.auth.login.dao.RoadmapSkillRepo;
 import com.auth.login.dao.UserSkillRepo;
-import com.auth.login.filter.JwtAuthenticationFilter;
 import com.auth.login.model.Emp;
 import com.auth.login.model.Roadmap_skills;
 import com.auth.login.model.UserSkill;
@@ -48,10 +47,6 @@ public class ApiRestController {
 
     @GetMapping("/home")
     public List<Emp> getAll(){
-//        String user=request.getUserPrincipal().getName();
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-//        System.out.println(currentPrincipalName);
         return employeeService.findAllEmp();
     }
 
@@ -70,16 +65,10 @@ public class ApiRestController {
         return userSkillService.getById(id);
     }
 
-//    @GetMapping("/getEmpDetails/{username}")
-//    public List<Emp> getEmpDetails(@PathVariable String username){
-//        return employeeService.findEmpDetails(username);
-//    }
-
     @GetMapping("/getEmpDetails")
     public List<Emp> getEmpDetails(String username){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-//        System.out.println(currentPrincipalName);
         return employeeService.findEmpDetails(currentPrincipalName);
     }
 
@@ -87,7 +76,6 @@ public class ApiRestController {
     public List<UserSkill> getSkillDetails(String username){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-//        System.out.println(currentPrincipalName);
         return userSkillService.findSkillDetails(currentPrincipalName);
     }
 
@@ -95,7 +83,6 @@ public class ApiRestController {
     public List<Emp> getTeams(String username){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-//        System.out.println(currentPrincipalName);
         return employeeService.findAllTeams(currentPrincipalName);
     }
 
@@ -103,7 +90,6 @@ public class ApiRestController {
     public List<UserSkill> findAllTeamSkills(String username){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-//        System.out.println(currentPrincipalName);
         return userSkillRepo.findAllTeamSkills(currentPrincipalName);
     }
 
@@ -151,16 +137,6 @@ public class ApiRestController {
     public void insertRoadmapSkill(Roadmap_skills roadmap_skills){
         roadmapSkillService.save(roadmap_skills);
     }
-
-//    @GetMapping(value = "/home3/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-//    public ResponseEntity<JSONObject> getAllDetails(@PathVariable int id){
-//        Emp e=employeeService.getById(id);
-//        UserSkill u=userSkillService.getById(id);
-//        JSONObject jsonobj=new JSONObject();
-//        jsonobj.put("employee",e);
-//        jsonobj.put("skills",u);
-//        return ResponseEntity.ok(jsonobj);
-//    }
 
 
     @PreAuthorize("hasRole('employee')")

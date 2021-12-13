@@ -26,10 +26,7 @@ public class UserDao {
     String sql1="select user_name, user_pass from login where user_name = ?";
 
     public User getUser(String username) {
-        //int[] types = {Types.VARCHAR};
-        //User user=jdbcTemplate.queryForObject(sql1, new Object[] { username }, new UserRowMapper());
         List<User> user= jdbcTemplate.query(sql1,new Object[]{username},new UserRowMapper());
-        // return jdbcTemplate.queryForObject(sql1, new Object[] { username }, new UserRowMapper());
         if(user.isEmpty()){
             return null;
         }
@@ -50,16 +47,9 @@ public class UserDao {
         return roles;
     }
 
-//    login(e_id) should go to user_role table.
-//    Value of e_id mapped to user_name in both tables
-
     public void saveUser(UserRole user) {
-//        long logine_id = 0;
         String sql3="insert into login(user_name, user_pass) values(?, ?)";
         String sql4="insert into user_role(user_name, user_role) values(?, ?)";
-
-//        String sql5="select e_id from login where user_name="+user.getUsername();
-//        String sql6="insert into user_role(e_id) values("+logine_id+")";
 
         jdbcTemplate.update(sql3, new Object[] { user.getUsername(), user.getUserpwd() });
         user.getRoles().forEach(r -> jdbcTemplate.update(new PreparedStatementCreator() {
@@ -70,10 +60,6 @@ public class UserDao {
                 return ps;
             }
         }));
-
-//        User query = new User();
-//        query=jdbcTemplate.queryForObject(sql5, new Object[]);
-//        jdbcTemplate.update(sql3, new Object[] { user.getUsername(), user.getUserpwd() });
     }
     public void saveE_id(){
 

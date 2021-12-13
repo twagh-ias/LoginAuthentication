@@ -41,7 +41,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String token = header.substring(7);
 
-        // Optional - verification
         jwtUtil.validateToken(token);
 
         UserVo userVo = jwtUtil.getUser(token);

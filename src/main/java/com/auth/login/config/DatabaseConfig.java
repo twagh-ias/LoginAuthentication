@@ -15,14 +15,6 @@ public class DatabaseConfig {
     @Autowired
     private Environment environment;
 
-	/*@Bean
-	public DataSource dataSource() {
-		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.H2) // .H2 or .DERBY, etc.
-				.addScript("user.sql").addScript("user-role.sql").build();
-		return db;
-	}*/
-
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();

@@ -25,8 +25,6 @@ public class RoadmapSkillRepoImpl implements RoadmapSkillRepo {
 
     private static final String delete_skill_query="delete from roadmap_skills where r_id=?";
 
-//    private static final String ;
-
 
     public Roadmap_skills getById(int r_id){
         return jdbcTemplate.queryForObject(get_roadmapSkills_query,
