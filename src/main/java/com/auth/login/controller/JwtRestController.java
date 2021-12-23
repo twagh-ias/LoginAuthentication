@@ -21,7 +21,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -36,6 +35,7 @@ public class JwtRestController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+//  sigin api for login user
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> generateJwtToken(@RequestBody JwtRequest jwtRequest) {
         try {
@@ -59,6 +59,7 @@ public class JwtRestController {
         return new ResponseEntity<JwtResponse>(new JwtResponse(token), HttpStatus.OK);
     }
 
+//    signup api for user registration
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody UserVo userVo) {
         UserVo u = userAuthService.getUserByUsername(userVo.getUsername());

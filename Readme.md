@@ -5,7 +5,6 @@ http://localhost:8080/signup
 http://localhost:8080/signin
 
 #role based authentication (@getmapping api's)
-
 http://localhost:8080/toolkit/manager
 http://localhost:8080/toolkit/employee
 http://localhost:8080/toolkit/employeeAndManager

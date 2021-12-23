@@ -45,26 +45,31 @@ public class ApiRestController {
     @Autowired
     RoadmapSkillRepo roadmapSkillRepo;
 
+//    get all employees from employee table
     @GetMapping("/home")
     public List<Emp> getAll(){
         return employeeService.findAllEmp();
     }
 
+//    get skills of all employees from user_skills table
     @GetMapping("/home2")
     public List<UserSkill> getAllSkills(){
         return userSkillService.findAllSkills();
     }
 
+//    get employee by id
     @GetMapping("/home/{id}")
     public Emp getEmp(@PathVariable int id){
         return employeeService.getById(id);
     }
 
+//    get skill by id
     @GetMapping("/home2/{id}")
     public UserSkill getUserSkill(@PathVariable int id){
         return userSkillService.getById(id);
     }
 
+//    get individual employee detail from employee table
     @GetMapping("/getEmpDetails")
     public List<Emp> getEmpDetails(String username){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -72,6 +77,7 @@ public class ApiRestController {
         return employeeService.findEmpDetails(currentPrincipalName);
     }
 
+//    get individual skill detail from user_skills table
     @GetMapping("/getSkillDetails")
     public List<UserSkill> getSkillDetails(String username){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -79,6 +85,7 @@ public class ApiRestController {
         return userSkillService.findSkillDetails(currentPrincipalName);
     }
 
+//    get team members of employee who is logged in
     @GetMapping("/getTeams")
     public List<Emp> getTeams(String username){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -86,6 +93,7 @@ public class ApiRestController {
         return employeeService.findAllTeams(currentPrincipalName);
     }
 
+//    get skills of team members
     @GetMapping("/getTeamSkill")
     public List<UserSkill> findAllTeamSkills(String username){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -93,52 +101,62 @@ public class ApiRestController {
         return userSkillRepo.findAllTeamSkills(currentPrincipalName);
     }
 
+//    add new employee details
     @PostMapping("/addEmp")
     public void addEmployee(Emp emp){
         employeeService.save(emp);
     }
 
+//    delete employee by id
     @DeleteMapping("/deleteEmp/{id}")
     public void deleteEmp(@PathVariable int id){
         employeeService.delete(id);
     }
 
+//    update employee details by id
     @PutMapping("/updateEmp/{id}")
     public void updateEmp(Emp emp, @PathVariable long id){
         employeeService.update(emp,id);
     }
 
+//    add new user skills
     @PostMapping("/addUserSkills")
     public void addUserSkills(UserSkill userSkill){
         userSkillService.insertUserSkill(userSkill);
     }
 
+//    update user skills for specific employee
     @PutMapping("/updateUserSkills/{id}")
     public void updateUserSkills(UserSkill userSkill, @PathVariable long id){
         userSkillService.update(userSkill,id);
     }
 
+//    delete skill of an employee by id
     @DeleteMapping("/deleteUserSkills/{id}")
     public void deleteUserSkill(@PathVariable int id){
         userSkillService.deleteUserSkill(id);
     }
 
+//    get roadmap skills
     @GetMapping("/roadmapSkills")
     public List<Roadmap_skills> getRoadmapAll(){
         return roadmapSkillService.findAllDetails();
     }
 
+//  validate skill roadmap inputs
     @PostMapping("/validateSkillRoadmap")
     public HashMap<Integer,String> validate(String required_skill,int min_req_rating,int complexity){
         return employeeService.validate(required_skill,min_req_rating,complexity);
     }
 
+//   add new roadmap skill
     @PostMapping("/addRoadmapSkill")
     public void insertRoadmapSkill(Roadmap_skills roadmap_skills){
         roadmapSkillService.save(roadmap_skills);
     }
 
 
+//Role based logins
     @PreAuthorize("hasRole('employee')")
     @GetMapping("/employee")
     public ResponseEntity<String> greetingUser() {
