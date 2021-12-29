@@ -35,7 +35,7 @@ public class JwtRestController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-//  sigin api for login user
+//  sigin api for user login (username, password)
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> generateJwtToken(@RequestBody JwtRequest jwtRequest) {
         try {
@@ -59,7 +59,7 @@ public class JwtRestController {
         return new ResponseEntity<JwtResponse>(new JwtResponse(token), HttpStatus.OK);
     }
 
-//    signup api for user registration
+//    signup api for user registration (username, password, role)
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody UserVo userVo) {
         UserVo u = userAuthService.getUserByUsername(userVo.getUsername());
